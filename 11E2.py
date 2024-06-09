@@ -16,8 +16,11 @@ dx = x[1] - x[0]
 r = (C * dt / dx)**2
 u = np.empty((x_points + 1, t_points + 1), dtype = float)
 for i in range(x_points):
-    u[i,0] = math.sin(2 * math.pi / x_points)
-    u[i,1] = 0.9 * math.sin(2 * math.pi / x_points)
+    u[i,0] = math.sin(2 * math.pi * i / x_points)
+for i in range(x_points):
+    ip1 = i+1 if i < x_points else i-1
+    im1 = i-1 if i > 0  else i+1
+    u[i,1] = u[i,0] + (r/2)*(u[im1,0] -2*u[i,0] + u[ip1,0])
 u[0,:] = 0.0
 u[x_points,:] = 0.0
 for j in range(t_points - 1):
