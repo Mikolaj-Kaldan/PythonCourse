@@ -8,6 +8,5 @@ for x in range(len(dates)-1):
     gold_rate.append(gold_rate[x]+np.random.randint(-10, 10))
 series = pd.Series(data = gold_rate, index = dates)
 series.plot()
-plt.xlabel("Date")
 plt.ylabel("Gold rate [USD/oz]")
 plt.show()
