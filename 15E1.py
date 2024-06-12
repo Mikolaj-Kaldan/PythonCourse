@@ -5,14 +5,13 @@ from PIL import Image, ImageTk
 root = Tk()
 root.title("Dice roll")
 
-panel = Label(root, image = ImageTk.PhotoImage(Image.open("1.png")))
-
 def roll():
     result = random.randint(1,6)
     file = str(result)+".png"
     img = ImageTk.PhotoImage(Image.open(file))
-    panel = Label(root, image = img)
-
+    label = Label(root, image = img)
+    label.image = img
+    label.grid(row = 1)
     
 button = Button(root,
     text="Roll a dice",
@@ -23,9 +22,7 @@ button = Button(root,
     fg="white",
     command=roll,
 )
-button.pack()
 
-panel.pack(side = "bottom", fill = "both", expand = "yes")
-
+button.grid(row = 2)
 
 root.mainloop()
